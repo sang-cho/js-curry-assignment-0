@@ -1,18 +1,12 @@
 'use strict'
 
-const entries =
-  obj =>
-    Object.keys(obj)
-      .map(key => [key, obj[key]])
+const entries = obj => Object.keys(obj).map(key => [key, obj[key]])
 
 const listing =
-  (name, price) => ({
-    name,
-    price
+  (name, price) => ({name,price
   })
 
-const customer =
-  (name, shoppingList) => ({
+const customer =(name, shoppingList) => ({
     name,
     shoppingList
   })
@@ -27,9 +21,12 @@ const cart =
  * should return an array with the `itemName` repeated `count` number of times
  */
 const itemRepeater =
-  itemName =>
-    count => {
-      // TODO
+  (itemName,count) => {
+      let arr=[]
+      for (let i=0; i<count; i++){
+        arr.push(itemName)
+      }
+      return arr
     }
 
 /**
@@ -39,8 +36,15 @@ const itemRepeater =
 const constructCarts =
   listings =>
     customers => {
-      // TODO
-    }
+       //console.log(itemRepeater(customers[0].name , 6))
+      return customers.map (customer => ({
+        customer: customer.name,
+        items:( entries(customer.shoppingList)
+        // .map (item =>  (itemRepeater(item[0] , item[1])))
+      )
+    })
+    )
+  }
 
 module.exports = {
   listing,
